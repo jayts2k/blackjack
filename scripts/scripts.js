@@ -7,6 +7,22 @@
 let suits = ['Hearts','Clubs','Diamonds','Spades'],
     values = ['Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Jack','Queen','King','Ace']
 
+let textArea = document.getElementById('text-area'),
+    newButton = document.getElementById('new-button'),
+    hitButton = document.getElementById('hit-button'),
+    stayButton = document.getElementById('stay-button')
+
+// Hide other buttons
+hitButton.style.display = 'none';
+stayButton.style.display = 'none';
+
+newButton.addEventListener('click', function() {
+    textArea.innerText = 'Started...';
+    newButton.style.display = 'none';
+    hitButton.style.display = 'inline';
+    stayButton.style.display = 'inline';
+
+});
 
 function createDeck() {
     let deck = [];
