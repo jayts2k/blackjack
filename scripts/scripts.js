@@ -120,8 +120,12 @@ function getScore(cardArray) {
             hasAce = true;
         }
     }
-    if (hasAce && score + 10 <= 21) {
+    if (hasAce && score <= 21) {
         return score + 10;
+    }
+    if (score == 21) {
+        playerWon = true;
+        return score;
     }
     return score;
 
@@ -182,7 +186,7 @@ function showStatus() {
                          'Player has:\n' + playerCardString +
                          '(score ' + playerScore + ')\n\n';
 
-    if (gameOver) {
+    if (gameOver || playerWon) {
         if (playerWon) {
             textArea.innerText += 'YOU WIN!';
         } else {
