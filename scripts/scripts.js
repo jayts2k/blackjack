@@ -9,6 +9,8 @@ let suits = ['Hearts','Clubs','Diamonds','Spades'],
               'Eight','Nine','Ten','Jack','Queen','King','Ace']
 
 let textArea = document.getElementById('text-area'),
+    playerTextArea = document.getElementById('player-text-area'),
+    dealerTextArea = document.getElementById('dealer-text-area'),
     newButton = document.getElementById('new-button'),
     hitButton = document.getElementById('hit-button'),
     stayButton = document.getElementById('stay-button');
@@ -27,6 +29,8 @@ let gameStarted = false,
 // Hide other buttons
 hitButton.style.display = 'none';
 stayButton.style.display = 'none';
+playerTextArea.style.display = 'none';
+dealerTextArea.style.display = 'none';
 showStatus();
 
 newButton.addEventListener('click', function() {
@@ -43,6 +47,7 @@ newButton.addEventListener('click', function() {
     hitButton.style.display = 'inline';
     stayButton.style.display = 'inline';
     showStatus();
+    textArea.innerText = '';
 });
 
 hitButton.addEventListener('click', function() {
@@ -163,12 +168,7 @@ function checkForEndOfGame() {
     }
 }
 
-function showStatus() {
-    if(!gameStarted) {
-        textArea.innerText = 'Welcome to Blackjack!';
-        return;
-    }
-    
+function showStatus() {    
     let dealerCardString = '';
     for(let i = 0; i < dealerCards.length; i++) {
         dealerCardString += getCardString(dealerCards[i]) + '\n';
@@ -181,16 +181,16 @@ function showStatus() {
 
     updateScores();
 
-    textArea.innerText = 'Dealer has:\n' + dealerCardString +
-                         '(score ' + dealerScore + ')\n\n' +
-                         'Player has:\n' + playerCardString +
-                         '(score ' + playerScore + ')\n\n';
-
+    dealerTextArea.innerText = 'Dealer got:\n' + dealerCardString +
+                               '(score ' + dealerScore + ')\n\n';
+    playerTextArea.innerText = 'Player got:\n' + playerCardString +
+                               '(score ' + playerScore + ')\n\n';                        
+                         
     if (gameOver || playerWon) {
         if (playerWon) {
-            textArea.innerText += 'YOU WIN!';
+            textArea.innerText = '\nYOU WIN!';
         } else {
-            textArea.innerText += 'DEALER WINS';
+            textArea.innerText = '\nDEALER WINS';
         }
         newButton.style.display = 'inline';
         hitButton.style.display = 'none';

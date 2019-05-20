@@ -1,1 +1,14 @@
 /* Styles go here */
+.col-md-4 {
+    text-align: center;
+    border: 4px;
+}
+
+.jumbotron {
+    color: blue;
+    background-color: red;
+}
+
+#dealer-text-area {
+    color: red;
+}
